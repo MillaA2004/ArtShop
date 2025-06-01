@@ -1,0 +1,56 @@
+.sidenav{
+    display: block;
+}
+.circle{
+    display: inline-block;
+}
+
+.circle{
+    width: 50px;
+    height: 50px;
+    background: var(--sidebar-bg);
+    overflow: hidden;
+    border: 5 solid white;
+    border-radius: 100%;
+    padding: 10px;
+}
+.circle img{
+    max-width: 100%;
+}
+
+.bar a{
+    position: fixed; 
+    right: 0;
+    margin: 1%;
+    transition: transform .3s;
+    color: var(--text-main);
+    /*right: -125px; /* Position them outside of the screen 
+    height: 50px;
+    transition: 0.3s;
+    width: 175px; 
+    text-decoration: none;
+    font-weight: 700; 
+    color: aliceblue;
+    border-radius: 40% 0 0 40%; 
+    background-image: linear-gradient(0.25turn, rgba(119, 206, 230), rgba(119, 206, 230, 0.5)) ;*/
+  }
+
+  #sidenav a:hover {
+    transform: scale(1.3);
+    cursor: pointer; /* On mouse-over, make the elements appear as they should */
+  }
+
+  #sidenav #a1 {
+    top: 30vh;
+  }
+  
+  #sidenav #a2 {
+    top: 40vh;
+  }
+  
+  #sidenav #a3 {
+    top: 50vh;
+  }
+  #sidenav #darkModeToggle {
+    top: 60vh;
+  }

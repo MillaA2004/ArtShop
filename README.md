@@ -1,1 +1,2 @@
-# ArtShop
+# Artsy
+WebSite Project

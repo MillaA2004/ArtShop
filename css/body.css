@@ -1,0 +1,47 @@
+:root {
+  --bg-main: linear-gradient(rgba(120, 200, 230), rgba(130, 100, 190, 0.5));
+  --text-main: rgb(80, 50, 140);
+  --box-bg: rgba(240, 250, 255, 0.8);
+  --button-bg: rgba(80, 50, 140, 0.7);
+  --header-bg: rgba(180, 160, 240);
+  --sidebar-bg:white;
+  --hover-bg: rgba(180, 160, 240, 0.5);
+  --nav-hover-bg: rgba(120, 200, 230, 0.7);
+  --nav-active-bg: rgba(120, 200, 230, 0.7);
+  --form-bg: aliceblue;
+  --dot-bg: rgb(230, 220, 255);
+  --dot-active-bg: rgba(35, 30, 60, 0.4);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--text-main);
+}
+
+body{
+    width: 100%;
+    max-width:100%;
+    background-image: var(--bg-main);
+}
+
+header, footer {
+  background-color: var(--header-bg);
+  color: var(--header-text);
+}
+
+
+button {
+  background-color: var(--button-bg);
+}
+
+main {
+    margin-top: 13vh;      /* for nav */
+    margin-bottom: 13vh;   /* for footer */
+    margin-left: 15vh;
+    margin-right: 15vh;     /* for side padding */
+    height:70vh;
+}
+

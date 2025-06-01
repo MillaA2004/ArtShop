@@ -1,0 +1,20 @@
+body.dark {
+  --bg-main: linear-gradient(rgb(64, 64, 129), rgb(80, 50, 140, 0.9));
+  --text-main:rgba(180, 160, 240, 1);
+  --box-bg: rgba(40, 40, 40, 0.9);
+  --button-bg: rgba(230, 230, 255, 0.2);
+  --header-bg: rgb(80, 50, 140);
+  --footer-bg: rgb(80, 50, 140);
+  --header-text: rgba(180, 160, 240, 1);
+  --sidebar-bg: rgba(40, 40, 40, 0.9);
+  --nav-hover-bg: rgba(20, 50, 100, 0.6);
+  --nav-active-bg: rgba(20, 50, 100, 0.8);
+  --form-bg: rgba(40, 40, 40, 0.9);
+  --dot-bg: rgba(35, 30, 60, 0.4);
+  --dot-active-bg: rgb(230, 220, 255);
+}
+
+.dark .bg-img {
+  background-image: url(../img/digital_portrait_dark.jpg);
+  background-color: #222;
+}

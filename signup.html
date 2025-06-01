@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="x-icon" href="icons/color-palette.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/f634b05fd0.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/body.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/sign.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  
+  <title>Artsy</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Store</a></li>
+        <li><a class="active" href="signup.html">Account</a></li>
+        <li><a href="aboutus.html">About us</a></li>
+        <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
+      </ul>
+    </nav>
+    <div class="logo">
+      <a href="artsy.html">
+        <img src="icons/color-palette.png" alt="logo">
+      </a>
+    </div>
+  </header>
+
+     
+<div id="sidenav" class="sidenav">
+        <div class="bar">
+            <a href="photoshop.html" id="a1">
+                <div class="circle">
+                    <img class="sidebar-icon" data-src-light="icons/photoshop.png"  data-src-dark="icons/photoshop-dark.png" alt="photoshop">
+                </div>
+            </a>
+        </div>
+        <div class="bar">
+            <a href="medibang.html" id="a2">
+                <div class="circle">
+                    <img class="sidebar-icon" data-src-light="icons/medibang.png" data-src-dark="icons/medibang-dark.png" alt="medibang">
+                </div>
+            </a>
+        </div>
+        <div class="bar">
+            <a href="traditional.html" id="a3">
+                <div class="circle">
+                    <img class="sidebar-icon" data-src-light="icons/pencil.png" data-src-dark= "icons/pencil-dark.png" alt="pencil">
+                </div>
+            </a>
+        </div>
+        <div class="bar">
+            <a id="darkModeToggle">
+                <div class="circle">
+                    <img class="sidebar-icon" data-src-light="icons/moon.png" data-src-dark="icons/moon-dark.png" alt="dark">
+                </div>
+            </a>
+        </div>
+    </div>
+
+  <main>
+    <form id="auth-form" style="border:1px solid #ccc">
+      <div class="container">
+        <h1 id="form-title">Sign In</h1>
+        <p id="form-subtext">Please enter your credentials to sign in.</p>
+        <hr>
+
+        <label for="email"><b>Email</b></label>
+        <input type="email" placeholder="Enter Email" name="email" id="email" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+
+        <div id="confirm-password-container" style="display: none;">
+          <label for="psw-repeat"><b>Repeat Password</b></label>
+          <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat">
+        </div>
+
+        <label>
+          <input type="checkbox" name="remember" checked="checked" style="margin-bottom:15px"> Remember me
+        </label>
+
+        <p>By continuing, you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+        <div class="clearfix">
+          <button type="button" class="cancelbtn" onclick="window.location.href='index.html'">Cancel</button>
+          <button type="submit" class="signupbtn" id="submit-button">Sign In</button>
+        </div>
+
+        <p style="text-align: center; margin-top: 1rem;" id="toggle-message">
+          Don’t have an account?
+          <a onclick="toggleForm()" class="form-toggle">Sign Up</a>
+        </p>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <span>CopyRight 2023. All Rights Reserved.
+      <ul>
+        <li><a href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
+        <li><a href="#"><i class="fa-brands fa-square-instagram"></i></a></li>
+        <li><a href="#"><i class="fa-brands fa-square-twitter"></i></a></li>
+      </ul>
+    </span>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/darkmode.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="x-icon" href="icons/color-palette.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f634b05fd0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/gallery.css">
+    <link rel="stylesheet" href="css/admin-index.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <title>Artsy</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="admin-index.html">Store</a></li>
+                <li><a class="active" href="admin-orders.html">Orders</a></li>
+                <li><a href="admin-users.html">Users</a></li>
+                <li><a href="logout.js">Log out</a></li>
+            </ul>
+        </nav> 
+        <div class="logo">
+                <img src="icons/color-palette.png" alt="logo">
+        </div>
+    </header>
+    
+<div id="sidenav" class="sidenav">
+        <div class="bar">
+            <a id="darkModeToggle">
+                <div class="circle">
+                    <img class="sidebar-icon" data-src-light="icons/moon.png" data-src-dark="icons/moon-dark.png" alt="dark">
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <main>
+         <h1>Orders</h1>
+
+        <div id="order-list" class="order-list"></div>
+    </main>
+    <footer> 
+        <span>CopyRight 2023. All Rights Reserved.
+        <ul>
+            <li><a href=""><i class="fa-brands fa-square-facebook"></i></a></li>
+            <li><a href=""><i class="fa-brands fa-square-instagram"></i></a></li>
+            <li><a href=""><i class="fa-brands fa-square-twitter"></i></a></li>
+        </ul>
+    </span>
+    </footer>
+    <script src="js/darkmode.js"></script>
+</body>
+</html>
