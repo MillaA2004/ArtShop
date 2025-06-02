@@ -79,13 +79,11 @@ router.post('/checkout', authenticate, [
     }
     console.log('[POST /api/orders/checkout] Order items prepared:', orderItems);
 
-    // Generate a unique order number
     const orderNumber = `ORD-${Date.now()}-${Math.random().toString(36).substring(2, 7).toUpperCase()}`;
     console.log(`[POST /api/orders/checkout] Generated OrderNumber: ${orderNumber}`);
 
-    // Create order instance (but don't save yet for payment failure case)
     const order = new Order({
-      orderNumber, // Assign the generated order number
+      orderNumber, 
       user: user._id,
       items: orderItems,
       billingAddress,
@@ -93,16 +91,14 @@ router.post('/checkout', authenticate, [
       sameAsShipping,
       payment: {
         ...payment,
-        status: 'pending' // Initial status
+        status: 'pending' 
       },
       subtotal
     });
 
-    // Calculate totals
     order.calculateTotals(); // This should exist on your Order model
     console.log('[POST /api/orders/checkout] Order totals calculated.');
 
-    // Mock Payment Processing based on cardLast4
     const cardLast4 = payment.cardLast4;
     console.log(`[POST /api/orders/checkout] Mock Payment - CardLast4: ${cardLast4}`);
 

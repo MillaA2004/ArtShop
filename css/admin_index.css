@@ -58,8 +58,8 @@ select {
     text-align: center;
 }
 .product img {
-    width: 160px;
-    height: 165px;
+    width: 10vw;
+    height: 15vh;
     border-radius: 40px;
     margin-bottom: 7px;
 }
