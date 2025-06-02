@@ -16,8 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializePopup();
     fetchProducts(); 
 });
-
-//popup/Add/Edit mode 
+ 
 function initializePopup() {
     const popupOverlay = document.getElementById('popup-overlay');
     const productForm = document.getElementById('productForm');
@@ -32,7 +31,6 @@ function initializePopup() {
             e.preventDefault();
             if (!popupOverlay || !productForm || !popupTitle || !submitButton) return;
 
-            // Set to ADD mode
             productForm.reset();
             productForm.removeAttribute('data-editing-product-id');
             if (popupTitle) popupTitle.textContent = 'Add New Product';
@@ -69,11 +67,10 @@ function initializePopup() {
     }
 }
 
-// Handle product form submission (for both Add and Edit)
 async function handleProductSubmit(event) {
     event.preventDefault(); 
 
-    const productForm = event.target; // The form that was submitted
+    const productForm = event.target; // submitted form
     const editingProductId = productForm.dataset.editingProductId;
 
     const nameInput = document.getElementById('name');
@@ -81,7 +78,7 @@ async function handleProductSubmit(event) {
     const categoryInput = document.getElementById('productCategory');
     const descriptionInput = document.getElementById('description');
     const imageInput = document.getElementById('image');
-    const stockInput = document.getElementById('stock'); // <-- Add this line
+    const stockInput = document.getElementById('stock'); 
 
     if (!nameInput || !priceInput || !categoryInput || !descriptionInput || !imageInput || !stockInput) {
         showToast('Form elements not found. Please check HTML.', 'error');
@@ -130,7 +127,6 @@ async function handleProductSubmit(event) {
             showToast(editingProductId ? 'Product updated successfully!' : 'Product added successfully!');
             
             if (popupOverlay) popupOverlay.style.display = 'none';
-            // Reset form to ADD mode defaults
             if (popupForm) {
                 popupForm.reset();
                 popupForm.removeAttribute('data-editing-product-id');
@@ -148,7 +144,6 @@ async function handleProductSubmit(event) {
     }
 }
 
-// Fetch and display products
 async function fetchProducts() {
     const categoryFilterElement = document.getElementById('category');
     const sortSelectElement = document.getElementById('sort');
@@ -182,7 +177,6 @@ async function fetchProducts() {
     }
 }
 
-// Products with Admin controls
 function displayProducts(products) {
     const productList = document.getElementById('product-list');
     if (!productList) return;
@@ -246,7 +240,6 @@ async function deleteProduct(productId) {
     }
 }
 
-// Called when an "Edit" button on a product card is clicked
 async function editProduct(productId) {
     if (!productId) return;
 
@@ -270,7 +263,7 @@ async function editProduct(productId) {
 
         if (data.success && data.product) {
             const product = data.product;
-            // Populate the form
+            // Place the info
             document.getElementById('name').value = product.name || '';
             document.getElementById('price').value = product.price || 0;
             document.getElementById('productCategory').value = product.category || '';
@@ -278,8 +271,8 @@ async function editProduct(productId) {
             document.getElementById('image').value = product.image || '';
             document.getElementById('stock').value = product.stock || 0;
 
-            // Set to EDIT mode
-            productForm.dataset.editingProductId = productId; // Store ID for submit handler
+            // EDIT mode
+            productForm.dataset.editingProductId = productId; 
             popupTitle.textContent = `Edit Product: ${product.name}`;
             submitButton.textContent = 'Update Product';
 
@@ -295,7 +288,6 @@ async function editProduct(productId) {
     }
 }
 
-// Show toast notification
 function showToast(message, type = 'success') {
     const toast = document.getElementById('toast') || createToastElement();
     toast.textContent = message;
@@ -307,11 +299,10 @@ function showToast(message, type = 'success') {
     }, 3000);
 }
 
-// Create toast element if it doesn't exist
 function createToastElement() {
     const toast = document.createElement('div');
     toast.id = 'toast';
-    toast.className = 'toast'; // Base class, type class will be added in showToast
+    toast.className = 'toast';
     document.body.appendChild(toast);
     return toast;
 }

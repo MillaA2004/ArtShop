@@ -1,10 +1,7 @@
-// API Base URL
 const API_URL = 'http://localhost:5000/api';
 
-// Auth state management
 let isLoginForm = true;
 
-// Toggle between login and signup forms
 function toggleForm() {
   isLoginForm = !isLoginForm;
   

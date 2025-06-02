@@ -1,7 +1,6 @@
 main {
     padding: 5px;
-    margin-left: 10vh;
-    margin-right: 10vh;
+    margin: inherit 10vw;
 }
 
 .filters-container {
@@ -41,7 +40,9 @@ select {
 
 .product-list {
     max-height: 50vh;
-    margin-top: 5vh;;
+    width: 85vw;
+    margin-top: 5vh;
+    padding: 5vh 5vw;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -50,7 +51,7 @@ select {
 }
 .product {
     flex: 0 0 auto;
-    width: 200px;
+    width: 15vw;
     background: linear-gradient(0.5turn, var(--box-bg), transparent);
     border-radius: 8px;
     padding: 10px;

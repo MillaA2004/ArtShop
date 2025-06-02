@@ -27,13 +27,11 @@
   user-select: none;
 }
 
-/* Position the "next button" to the right */
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
-/* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
   background-color: rgba(35, 30, 60, 0.4);
 }
@@ -52,7 +50,6 @@
     text-align: center;
 }
 
-/* The dots/bullets/indicators */
 .dot {
   cursor: pointer;
   height: 15px;
@@ -68,7 +65,6 @@
   background-color: var(--dot-active-bg);
 }
 
-/* Fading animation */
 .fade {
   animation-name: transition;
   animation-duration: 1.5s;

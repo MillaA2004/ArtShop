@@ -1,14 +1,14 @@
-main{
-    margin:15vh 10vw;
-    height: fit-content;
-}
+
 
 form{
+  margin: 17vh auto;
   height: fit-content;
   color: var(--text-main);
   font-size: 1.25em;
   background: linear-gradient(0.5turn, var(--form-bg), transparent);
 }
+
+form .signin
 
 form a, label, b, h1, p{
     font-weight: 700;
@@ -47,8 +47,7 @@ input {
   text-decoration: underline;
 }
 
-  
-  /* Set a style for all buttons */
+
   button {
     align-items: center;
     background-color: rgb(140, 200, 200);
@@ -83,7 +82,6 @@ input {
     opacity:1;
   }
   
-  /* Extra styles for the cancel button */
   .cancelbtn {
     padding: .7rem 1.3rem;
     background-color: rgba(140, 125, 170, 0.7);
@@ -91,18 +89,15 @@ input {
   }
   
   
-  /* Float cancel and signup buttons and add an equal width */
   .cancelbtn, .signupbtn {
     float: left;
     width: 50%;
   }
   
-  /* Add padding to container elements */
   .container {
     padding: 16px;
   }
   
-  /* Clear floats */
   .clearfix::after {
     content: "";
     clear: both;
