@@ -40,7 +40,6 @@ async function fetchProducts() {
     }
   } catch (error) {
     console.error('Error fetching products:', error);
-    // Use sample data as fallback
     loadSampleProducts();
   }
 }
@@ -59,7 +58,6 @@ function displayProducts(productsToShow) {
     const productElement = document.createElement('div');
     productElement.className = 'product';
     
-    // Handle free products
     const priceDisplay = product.price === 0 ? 'Free' : `$${product.price.toFixed(2)}`;
     
     productElement.innerHTML = `
@@ -73,13 +71,11 @@ function displayProducts(productsToShow) {
   });
 }
 
-// Add product to cart
 async function addToCart(productId) {
   const product = products.find(p => p._id === productId);
   if (!product) return;
   
   if (isAuthenticated()) {
-    // Add to cart via API
     try {
       const response = await fetch(`${API_URL}/cart/add`, {
         method: 'POST',
@@ -105,7 +101,6 @@ async function addToCart(productId) {
       showToast('Network error. Please try again.', 'error');
     }
   } else {
-    // Add to local storage cart
     let cart = JSON.parse(localStorage.getItem('cart') || '[]');
     const existingItem = cart.find(item => item.id === productId);
     
@@ -127,7 +122,6 @@ async function addToCart(productId) {
   }
 }
 
-// Update cart count in navigation
 async function updateCartCount() {
   let count = 0;
   
@@ -151,7 +145,6 @@ async function updateCartCount() {
     count = cart.reduce((sum, item) => sum + item.quantity, 0);
   }
   
-  // Update cart icon with count
   const cartIcon = document.querySelector('.fa-shopping-cart');
   if (cartIcon) {
     const countBadge = cartIcon.parentElement.querySelector('.cart-count') || document.createElement('span');
@@ -186,7 +179,6 @@ async function updateCartCount() {
   }
 }
 
-// Show toast notification
 function showToast(message, type = 'success') {
   const toast = document.getElementById('toast') || createToastElement();
   toast.textContent = message;
@@ -198,7 +190,6 @@ function showToast(message, type = 'success') {
   }, 3000);
 }
 
-// Create toast element if it doesn't exist
 function createToastElement() {
   const cartLink = document.querySelector('a[href="cart.html"]');
   const toast = document.createElement('div');
@@ -216,7 +207,6 @@ function createToastElement() {
     toast.style.display = 'none';
     toast.style.fontFamily = 'sans-serif';
   } else {
-    // Fallback styling if cart icon not found
     toast.style.cssText = `
       position: fixed;
       top: 20px;

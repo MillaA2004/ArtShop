@@ -71,7 +71,7 @@ document.getElementById('auth-form').addEventListener('submit', async (e) => {
       console.log('User data from response:', data.user);
       console.log('User role from response:', data.user ? data.user.role : 'N/A');
 
-      // Check user role and set isAdmin flag
+      // Check user role
       if (data.user && data.user.role === 'admin') {
         localStorage.setItem('isAdmin', 'true');
         console.log('isAdmin flag SET to true');
@@ -82,7 +82,7 @@ document.getElementById('auth-form').addEventListener('submit', async (e) => {
       
       showMessage(data.message, 'success');
       
-      // Sync cart if user has items in local storage
+      // Sync cart
       await syncCart();
       
       // Redirect based on role
@@ -101,8 +101,7 @@ document.getElementById('auth-form').addEventListener('submit', async (e) => {
     showMessage('Network error. Please try again.', 'error');
   }
 });
-
-// Sync local cart with server
+// Sync cart with server
 async function syncCart() {
   const localCart = JSON.parse(localStorage.getItem('cart') || '[]');
   
@@ -140,14 +139,14 @@ function showMessage(message, type) {
   messageDiv.style.cssText = `
     position: fixed;
     top: 20px;
-    right: 20px;
+    right: 20vw;
     padding: 15px 20px;
     border-radius: 5px;
     color: white;
     font-weight: bold;
     z-index: 1000;
     animation: slideIn 0.3s ease-out;
-    background-color: ${type === 'success' ? '#4CAF50' : '#f44336'};
+    background-color: ${type === 'success' ? 'var(--nav-active-bg)' : 'var(--button-bg)'};
   `;
   
   document.body.appendChild(messageDiv);
@@ -161,12 +160,10 @@ function showMessage(message, type) {
 function checkAuth() {
   const token = localStorage.getItem('authToken');
   if (token) {
-    // Optionally verify token with server
     window.location.href = 'index.html';
   }
 }
 
-// Add CSS for animations
 const style = document.createElement('style');
 style.textContent = `
   @keyframes slideIn {

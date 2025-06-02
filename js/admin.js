@@ -1,4 +1,3 @@
-// Check admin authentication on page load
 document.addEventListener('DOMContentLoaded', checkAdminAuth);
 
 function checkAdminAuth() {

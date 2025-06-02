@@ -1,24 +1,20 @@
 // API Base URL
 const API_URL = 'http://localhost:5000/api';
 
-// Get auth token
 function getAuthToken() {
   return localStorage.getItem('authToken');
 }
 
-// Check if user is authenticated
 function isAuthenticated() {
   return !!getAuthToken();
     }
 
-// Load and display cart
 async function loadCart() {
   try {
     let cartItems = [];
     let subtotal = 0;
     
     if (isAuthenticated()) {
-      // Fetch cart from API
       const response = await fetch(`${API_URL}/cart`, {
         headers: {
           'Authorization': `Bearer ${getAuthToken()}`
@@ -31,7 +27,6 @@ async function loadCart() {
         subtotal = data.subtotal;
       }
     } else {
-      // Get cart from local storage
       const localCart = JSON.parse(localStorage.getItem('cart') || '[]');
       cartItems = localCart.map(item => ({
         product: {
@@ -53,7 +48,6 @@ async function loadCart() {
   }
     }
 
-// Display cart items
 function displayCart(cartItems, subtotal) {
   const cartPreview = document.getElementById('cart-preview');
   const cartCount = document.getElementById('cart-count');
@@ -67,7 +61,6 @@ function displayCart(cartItems, subtotal) {
             return;
         }
 
-        // Display cart items
   cartPreview.innerHTML = cartItems.map(item => `
     <div class="cart-item" style="display: flex; align-items: center; margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
       <img src="${item.product.image}" alt="${item.product.name}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;" onerror="this.src='img/placeholder.jpg'">
@@ -86,12 +79,11 @@ function displayCart(cartItems, subtotal) {
   
   // Calculate totals (including tax and shipping)
   const tax = subtotal * 0.1; // 10% tax
-  const shipping = subtotal > 50 ? 0 : 5; // Free shipping over $50
+  const shipping = subtotal > 50 ? 0 : 5; // Free shipping >$50
   const total = subtotal + tax + shipping;
 
   totalPrice.textContent = `$${total.toFixed(2)}`;
   
-  // Store totals for checkout
   window.cartTotals = {
     subtotal,
     tax,
@@ -100,7 +92,6 @@ function displayCart(cartItems, subtotal) {
   };
 }
 
-// Update item quantity
 async function updateQuantity(productId, newQuantity) {
   if (newQuantity < 0) return;
   
@@ -126,7 +117,6 @@ async function updateQuantity(productId, newQuantity) {
         showToast(data.message || 'Failed to update cart', 'error');
       }
     } else {
-      // Update local storage
       let cart = JSON.parse(localStorage.getItem('cart') || '[]');
       if (newQuantity === 0) {
         cart = cart.filter(item => item.id !== productId);
@@ -145,12 +135,10 @@ async function updateQuantity(productId, newQuantity) {
             }
         }
 
-// Remove item from cart
 async function removeFromCart(productId) {
   await updateQuantity(productId, 0);
 }
 
-// Clear entire cart
 async function clearCart() {
   if (!confirm('Are you sure you want to clear your cart?')) return;
   
@@ -179,7 +167,6 @@ async function clearCart() {
   }
     }
 
-// Process checkout
 async function processCheckout(e) {
         e.preventDefault();
   
@@ -191,7 +178,6 @@ async function processCheckout(e) {
             return;
         }
 
-  // Collect form data
   const formElement = e.target.closest('form'); // Get the form element
   if (!formElement) {
     console.error('Checkout form not found');
@@ -201,9 +187,8 @@ async function processCheckout(e) {
   const formData = new FormData(formElement);
   const sameAddress = document.getElementById('same-address').checked;
   
-  // Get raw card number and extract last 4 digits
   const rawCardNumber = formData.get('cardnumber') || '';
-  const numericCardNumber = rawCardNumber.replace(/\D/g, ''); // Remove all non-digits
+  const numericCardNumber = rawCardNumber.replace(/\D/g, '');
   const cardLast4 = numericCardNumber.slice(-4);
 
   console.log('Raw Card Number:', rawCardNumber);
@@ -222,7 +207,7 @@ async function processCheckout(e) {
     sameAsShipping: sameAddress,
     payment: {
       method: 'credit_card',
-      cardLast4: cardLast4 // Use the processed cardLast4
+      cardLast4: cardLast4 
     }
   };
   
@@ -238,7 +223,6 @@ async function processCheckout(e) {
         }
 
   try {
-    // Show loading state
     const submitBtn = document.getElementById('checkout-btn');
     submitBtn.disabled = true;
     submitBtn.textContent = 'Processing...';
@@ -256,7 +240,6 @@ async function processCheckout(e) {
     
     if (data.success) {
       showToast('Order placed successfully!');
-      // Clear cart and redirect to order confirmation
       setTimeout(() => {
         window.location.href = `order-confirmation.html?orderId=${data.order._id}`;
       }, 1500);
@@ -273,12 +256,11 @@ async function processCheckout(e) {
   }
 }
 
-// Show toast notification
 function showToast(message, type = 'success') {
   const toast = document.getElementById('toast');
   if (toast) {
     toast.textContent = message;
-    toast.style.background = type === 'success' ? '#4CAF50' : '#f44336';
+    toast.style.background = type === 'success' ? 'var(--nav-active-bg)' : 'var(--header-bg)';
     toast.style.display = 'block';
 
     setTimeout(() => {
