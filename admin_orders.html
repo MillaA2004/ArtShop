@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/gallery.css">
-    <link rel="stylesheet" href="css/admin-index.css">
+    <link rel="stylesheet" href="css/admin_orders.css">
     <link rel="stylesheet" href="css/dark-mode.css">
     <title>Artsy</title>
 </head>
@@ -18,10 +18,10 @@
     <header>
         <nav>
             <ul>
-                <li><a  href="admin-index.html">Store</a></li>
-                <li><a href="admin-orders.html">Orders</a></li>
-                <li><a class="active" href="admin-users.html">Users</a></li>
-                <li><a href="logout.js">Log out</a></li>
+                <li><a href="admin_index.html">Store</a></li>
+                <li><a class="active" href="admin_orders.html">Orders</a></li>
+                <li><a href="admin_users.html">Users</a></li>
+                <li><a href="#" onclick="performAdminLogout(); return false;">Logout</a></li>
             </ul>
         </nav> 
         <div class="logo">
@@ -40,9 +40,11 @@
     </div>
 
     <main>
-         <h1>Users</h1>
-
-        <div id="order-list" class="order-list"></div>
+         <h1>Orders</h1>
+         <br>
+        <div id="order-list" class="order-list">
+            
+        </div>
     </main>
     <footer> 
         <span>CopyRight 2023. All Rights Reserved.
@@ -53,6 +55,9 @@
         </ul>
     </span>
     </footer>
+    <script src="js/admin.js"></script>
+    <script src="js/admin_orders.js"></script>
+    <script src="js/logout.js"></script>
     <script src="js/darkmode.js"></script>
 </body>
 </html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="x-icon" href="icons/color-palette.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f634b05fd0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <title>Order Confirmation - Artsy</title>
+    <style>
+        .confirmation-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background: var(--form-bg);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .success-icon {
+            font-size: 60px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        .order-details {
+            margin: 30px 0;
+            text-align: left;
+            background: var(--nav-active-bg);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .order-items {
+            margin: 20px 0;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        .totals {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #333;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+        
+        .total-row.final {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #333;
+        }
+        
+        .action-buttons {
+            margin-top: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 0 10px;
+            background: var(--button-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #333;
+        }
+        
+        .btn-secondary {
+            background: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Store</a></li>
+                <li><a href="aboutus.html">About us</a></li>  
+                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a href="signup.html">Account</a></li>
+            </ul>
+        </nav> 
+        <div class="logo">
+            <a href="artsy.html">
+                <img src="icons/color-palette.png" alt="logo">
+            </a>
+        </div>
+    </header>
+    
+    <div id="sidenav" class="sidenav">
+        <div class="bar">
+            <a href="photoshop.html" id="a1">
+                <div class="circle">
+                    <img class="sidebar-icon" data-src-light="icons/photoshop.png" data-src-dark="icons/photoshop-dark.png" alt="photoshop">
+                </div>
+            </a>
+        </div>
+        <div class="bar">
+            <a href="medibang.html" id="a2">
+                <div class="circle">
+                    <img class="sidebar-icon" data-src-light="icons/medibang.png" data-src-dark="icons/medibang-dark.png" alt="medibang">
+                </div>
+            </a>
+        </div>
+        <div class="bar">
+            <a href="traditional.html" id="a3">
+                <div class="circle">
+                    <img class="sidebar-icon" data-src-light="icons/pencil.png" data-src-dark="icons/pencil-dark.png" alt="pencil">
+                </div>
+            </a>
+        </div>
+        <div class="bar">
+            <a id="darkModeToggle">
+                <div class="circle">
+                    <img class="sidebar-icon" data-src-light="icons/moon.png" data-src-dark="icons/moon-dark.png" alt="dark">
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <main>
+        <div class="confirmation-container">
+            <i class="fa fa-check-circle success-icon"></i>
+            <h1>Order Confirmed!</h1>
+            <p>Thank you for your purchase. Your order has been successfully placed.</p>
+            
+            <div class="order-details" id="order-details">
+                <h3>Order Number: <span id="order-number">Loading...</span></h3>
+                <p>Order Date: <span id="order-date"></span></p>
+                <p>Status: <span id="order-status" style="color: #4CAF50; font-weight: bold;">Processing</span></p>
+                
+                <div class="order-items" id="order-items">
+                    <!-- Order items will be populated here -->
+                </div>
+                
+                <div class="totals">
+                    <div class="total-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Tax:</span>
+                        <span id="tax">$0.00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Shipping:</span>
+                        <span id="shipping">$0.00</span>
+                    </div>
+                    <div class="total-row final">
+                        <span>Total:</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                </div>
+            </div>
+            
+            <p style="margin-top: 20px;">A confirmation email has been sent to your registered email address.</p>
+            
+            <div class="action-buttons">
+                <a href="index.html" class="btn">Continue Shopping</a>
+                <a href="#" class="btn btn-secondary" onclick="viewOrders()">View My Orders</a>
+            </div>
+        </div>
+    </main>
+
+    <footer> 
+        <span>CopyRight 2023. All Rights Reserved.
+        <ul>
+            <li><a href=""><i class="fa-brands fa-square-facebook"></i></a></li>
+            <li><a href=""><i class="fa-brands fa-square-instagram"></i></a></li>
+            <li><a href=""><i class="fa-brands fa-square-twitter"></i></a></li>
+        </ul>
+    </span>
+    </footer>
+
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+        
+        // Get order ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('orderId');
+        
+        // Load order details
+        async function loadOrderDetails() {
+            if (!orderId) {
+                document.getElementById('order-details').innerHTML = '<p>No order ID provided.</p>';
+                return;
+            }
+            
+            try {
+                const token = localStorage.getItem('authToken');
+                const response = await fetch(`${API_URL}/orders/${orderId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayOrderDetails(data.order);
+                } else {
+                    document.getElementById('order-details').innerHTML = '<p>Error loading order details.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching order:', error);
+                document.getElementById('order-details').innerHTML = '<p>Error loading order details.</p>';
+            }
+        }
+        
+        // Display order details
+        function displayOrderDetails(order) {
+            document.getElementById('order-number').textContent = order._id;
+            document.getElementById('order-date').textContent = new Date(order.createdAt).toLocaleDateString();
+            document.getElementById('order-status').textContent = order.status.charAt(0).toUpperCase() + order.status.slice(1);
+            
+            // Display items
+            const itemsHtml = order.items.map(item => `
+                <div class="order-item">
+                    <span>${item.name} x ${item.quantity}</span>
+                    <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                </div>
+            `).join('');
+            
+            document.getElementById('order-items').innerHTML = itemsHtml;
+            
+            // Display totals
+            document.getElementById('subtotal').textContent = `$${order.subtotal.toFixed(2)}`;
+            document.getElementById('tax').textContent = `$${order.tax.toFixed(2)}`;
+            document.getElementById('shipping').textContent = `$${order.shipping.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${order.total.toFixed(2)}`;
+        }
+        
+        // View orders function
+        function viewOrders() {
+            // This would redirect to an orders page
+            window.location.href = 'orders.html';
+        }
+        
+        // Initialize
+        loadOrderDetails();
+    </script>
+    <script src="js/logout.js"></script>
+    <script src="js/darkmode.js"></script>
+</body>
+</html> 

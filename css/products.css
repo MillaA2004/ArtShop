@@ -1,0 +1,103 @@
+main {
+    padding: 5px;
+    margin-left: 10vh;
+    margin-right: 10vh;
+}
+
+.filters-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.filters-container p{
+    font-size: 3.2em;
+    font-family:playfair, serif;
+    color:var(--text-main);
+    text-align: center;
+}
+.filters-container label{
+    font-family:playfair, serif;
+    color:var(--text-main);
+    font-size: 1.4em;
+    font-weight: 400;
+}
+
+.filters-container select {
+    width: 180px;
+    padding: 8px;
+    border-radius: 12px;
+    font-family:playfair, serif;
+    font-size: 1.2em;
+    font-weight: 400;
+    box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+    box-sizing: border-box;
+    background-color: var(--box-bg);
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ad9abe;
+}
+
+.product-list {
+    max-height: 50vh;
+    margin-top: 5vh;;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    gap: 10vw;
+}
+.product {
+    flex: 0 0 auto;
+    width: 200px;
+    background: linear-gradient(0.5turn, var(--box-bg), transparent);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.product img {
+    width: 160px;
+    height: 165px;
+    border-radius: 40px;
+    margin-bottom: 7px;
+}
+
+.product img:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+button {
+    align-items: center;
+    background-color: var(--button-bg);
+    border-radius: 12px;
+    box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    flex: .5 .5 auto;
+    font-family: inherit;
+    font-size: 1.2rem;
+    font-weight: 700;
+    justify-content: flex-end;
+    right: 0;
+    line-height: 1;
+    margin: 2vh 0;
+    outline: none;
+    padding: .7rem 1.3rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s,-webkit-box-shadow .2s;
+    white-space: nowrap;
+    border: 3px solid transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+button:hover {
+    box-shadow: transparent 0 0 3px, transparent 0 0 0 0;
+    background-color: var(--nav-active-bg);
+    color: white;
+}

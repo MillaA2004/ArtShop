@@ -1,0 +1,54 @@
+.user-item {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    background: var(--box-bg);
+    border-radius: 32px 32px 32px 0px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    margin-bottom: 32px;
+    padding: 32px 28px;
+    align-items: flex-start;
+    font-family: 'Fira Mono', 'Consolas', monospace;
+}
+
+.user-details {
+    flex: 1 1 250px;
+}
+
+.user-details h3 {
+    margin: 0 0 12px 0;
+    font-size: 1.4rem;
+    color: var(--text-main);
+    font-weight: bold;
+}
+
+.user-details p {
+    margin: 6px 0;
+    color: var(--text-main);
+    font-size: 1.05rem;
+}
+
+.user-actions {
+    flex: 0 0 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+.user-actions button {
+    background: var(--nav-active-bg);
+    color: var(--text-main);
+    border: none;
+    border-radius: 16px;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.user-actions button:hover {
+    background: #a3d8f4;
+    box-shadow: 0 2px 12px rgba(126,200,230,0.3);
+}

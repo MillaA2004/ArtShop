@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="x-icon" href="icons/color-palette.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f634b05fd0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/gallery.css">
+    <link rel="stylesheet" href="css/admin_index.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <title>Artsy Admin</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a class="active" href="admin_index.html">Store</a></li>
+                <li><a href="admin_orders.html">Orders</a></li>
+                <li><a href="admin_users.html">Users</a></li>
+                <li><a href="#" class="logout-link" onclick="performAdminLogout(); return false;">Logout</a></li>
+            </ul>
+        </nav> 
+        <div class="logo">
+                <img src="icons/color-palette.png" alt="logo">
+        </div>
+    </header>
+    
+    <div id="sidenav" class="sidenav">
+        <div class="bar">
+            <a id="a3" onclick="">
+                <div class="circle">
+                    <p class="sidebar-icon" style="text-align: center; font-size: 2em; font-weight: 700;" data-src-light="style= color: black; fill-color: white;"  data-src-dark="style= color: white; fill-color: black;">+</p>
+                </div>
+            </a>
+        </div>
+        <div class="bar">
+            <a id="darkModeToggle">
+                <div class="circle">
+                    <img class="sidebar-icon" data-src-light="icons/moon.png" data-src-dark="icons/moon-dark.png" alt="dark">
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <main>
+        <div class="filters-container">
+            <p>Manage Products</p>
+
+            <div class="filters">
+                <label for="category">Category:</label>
+                <select id="category">
+                    <option value="all">All</option>
+                    <option value="digital art">Digital art</option>
+                    <option value="traditional art">Traditional art</option>
+                    <option value="software">Software</option>
+                </select>
+
+                <label for="sort">Sort by:</label>
+                <select id="sort">
+                    <option value="name">Name</option>
+                    <option value="price">Price</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="product-list" class="product-list"></div>
+    </main>
+
+    <footer> 
+        <span>CopyRight 2023. All Rights Reserved.
+            <ul>
+                <li><a href=""><i class="fa-brands fa-square-facebook"></i></a></li>
+                <li><a href=""><i class="fa-brands fa-square-instagram"></i></a></li>
+                <li><a href=""><i class="fa-brands fa-square-twitter"></i></a></li>
+            </ul>
+        </span>
+    </footer>
+
+    <div id="popup-overlay" class="popup-overlay" style="display: none;">
+        <div class="popup-form">
+            <span id="close-popup" class="close-btn">&times;</span>
+            <h3>Add New Product</h3>
+            <hr>
+            <form id="productForm">
+                <label>Name:</label>
+                <input type="text" id="name" required placeholder="e.g., Pose">
+
+                <div class="form-row">
+                    <div class="form-col">
+                        <label>Price ($):</label>
+                        <input type="number" id="price" required placeholder="e.g., 30">
+                    </div>
+                    <div class="form-col">
+                        <label>Category:</label>
+                        <select id="productCategory" required>
+                            <option value="">Category</option>
+                            <option value="digital art">Digital art</option>
+                            <option value="traditional art">Traditional art</option>
+                            <option value="software">Software</option>
+                        </select>
+                    </div>
+                    <div class="form-col">
+                        <label>Stock:</label>
+                        <input type="number" id="stock" required min="0" placeholder="e.g., 10">
+                    </div>
+                </div>
+
+                <label for="description">Description:</label>
+                <textarea id="description" rows="3" required placeholder="e.g., A detailed guide to character art."></textarea>
+
+                <div class="form-row">
+                    <div class="form-col">
+                        <label>Image URL:</label>
+                        <input type="text" id="image" required placeholder="e.g., img/shadows.jpg">
+                    </div>
+                    <div class="form-col" style="align-self: flex-end;">
+                        <button type="submit" style="margin-top: 24px;">Add Product</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script src="js/admin_index.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/darkmode.js"></script>  
+</body>
+</html>

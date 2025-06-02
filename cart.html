@@ -5,7 +5,7 @@
     <link rel="shortcut icon" type="x-icon" href="icons/color-palette.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/f634b05fd0.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/inputmask.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/inputmask.min.js"></script> -->
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/body.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -22,9 +22,9 @@
         <nav>
             <ul>
                 <li><a href="index.html">Store</a></li>
-                <li><a href="signup.html">Account</a></li>
                 <li><a href="aboutus.html">About us</a></li>  
                 <li><a class="active" href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a href="signup.html">Account</a></li>
             </ul>
         </nav> 
         <div class="logo">
@@ -70,7 +70,7 @@
        <div class="row">
       <div class="col-75">
         <div class="box">
-          <form action="/action_page.php">
+          <form id="checkoutForm">
 
             <div class="row">
               <div class="col-50">
@@ -108,7 +108,7 @@
                 <label for="cname">Name on Card</label>
                 <input type="text" id="cname" name="cardname" placeholder="John More Doe">
                 <label for="ccnum">Credit card number</label>
-                <input type="text" id="ccnum" name="cardnumber" placeholder="xxxx-xxxx-xxxx-xxxx">
+                <input type="text" id="ccnum" name="cardnumber" placeholder="xxxx-xxxx-xxxx-xxxx" maxlength="19">
                 <label for="expmonth">Exp Month</label>
                 <input type="text" id="expmonth" name="expmonth" placeholder="September">
 
@@ -145,6 +145,7 @@
               <label for="shipping-zip">ZIP / Postal Code</label>
               <input type="text" id="shipping-zip" name="shippingzip" placeholder="ZIP">
             </div> 
+            <input type="submit" value="Continue to checkout" class="btn" id="checkout-btn" style="margin-top: 20px;">
           </form>
         </div>
       </div>
@@ -166,7 +167,8 @@
 
               <button id="clear-cart" class="btn">Clear Cart</button>
 
-              <input type="submit" value="Continue to checkout" class="btn" id="checkout-btn">
+              <!-- This button in col-25 should be removed or commented out -->
+              <!-- <input type="submit" value="Continue to checkout" class="btn" id="checkout-btn"> -->
           </div>
       </div>
     </div>
@@ -186,8 +188,8 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: #333;
-      color: #fff;
+      background: var(--form-bg);
+      color: var(--text-color);
       padding: 12px 20px;
       border-radius: 6px;
       display: none;
@@ -198,6 +200,7 @@
     </div>
 
   <script src="js/cart.js"></script>
+  <script src="js/logout.js"></script>
   <script src="js/darkmode.js"></script>
   <script>
       document.addEventListener("DOMContentLoaded", () => {

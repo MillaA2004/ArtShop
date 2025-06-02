@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/gallery.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/products.css">
     <link rel="stylesheet" href="css/dark-mode.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <title>Artsy</title>
 </head>
 <body>
@@ -19,23 +20,23 @@
         <nav>
             <ul>
                 <li><a class="active" href="index.html">Store</a></li>
-                <li><a href="signup.html">Account</a></li>
                 <li><a href="aboutus.html">About us</a></li>  
                 <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a href="signup.html">Account</a></li>
             </ul>
         </nav> 
         <div class="logo">
             <a href="artsy.html">
-                <img src="icons/color-palette.png"alt="logo">
+                <img src="icons/color-palette.png" alt="logo">
             </a>
         </div>
     </header>
     
-<div id="sidenav" class="sidenav">
+    <div id="sidenav" class="sidenav">
         <div class="bar">
             <a href="photoshop.html" id="a1">
                 <div class="circle">
-                    <img class="sidebar-icon" data-src-light="icons/photoshop.png"  data-src-dark="icons/photoshop-dark.png" alt="photoshop">
+                    <img class="sidebar-icon" data-src-light="icons/photoshop.png" data-src-dark="icons/photoshop-dark.png" alt="photoshop">
                 </div>
             </a>
         </div>
@@ -49,7 +50,7 @@
         <div class="bar">
             <a href="traditional.html" id="a3">
                 <div class="circle">
-                    <img class="sidebar-icon" data-src-light="icons/pencil.png" data-src-dark= "icons/pencil-dark.png" alt="pencil">
+                    <img class="sidebar-icon" data-src-light="icons/pencil.png" data-src-dark="icons/pencil-dark.png" alt="pencil">
                 </div>
             </a>
         </div>
@@ -63,39 +64,41 @@
     </div>
 
     <main>
-         <div class="filters-container">
-            <p>Explore the world of art and creativity.</p>
+        <div class="product-container">
+            <div class="filters-container">
+                <p>Explore the world of art and creativity.</p>
+                <div class="filters">
+                    <label for="category">Category:</label>
+                    <select id="category">
+                        <option value="all">All</option>
+                        <option value="digital art">Digital art</option>
+                        <option value="traditional art">Traditional art</option>
+                        <option value="software">Software</option>
+                    </select>
 
-        <!-- Филтри и сортиране -->
-        <div class="filters">
-            <label for="category">Category:</label>
-            <select id="category">
-                <option value="all">All</option>
-                <option value="digital art">Digital art</option>
-                <option value="traditional art">Traditional art</option>
-                <option value="software">Software</option>
-            </select>
+                    <label for="sort">Sort by:</label>
+                    <select id="sort">
+                        <option value="name">Name</option>
+                        <option value="price">Price</option>
+                    </select>
+                </div>
+            </div>
 
-            <label for="sort">Sort by:</label>
-            <select id="sort">
-                <option value="name">Name</option>
-                <option value="price">Price</option>
-            </select>
+            <div id="product-list" class="product-list"></div>
         </div>
-        </div>
-
-        <div id="product-list" class="product-list"></div>
     </main>
+
     <footer> 
         <span>CopyRight 2023. All Rights Reserved.
-        <ul>
-            <li><a href=""><i class="fa-brands fa-square-facebook"></i></a></li>
-            <li><a href=""><i class="fa-brands fa-square-instagram"></i></a></li>
-            <li><a href=""><i class="fa-brands fa-square-twitter"></i></a></li>
-        </ul>
-    </span>
+            <ul>
+                <li><a href=""><i class="fa-brands fa-square-facebook"></i></a></li>
+                <li><a href=""><i class="fa-brands fa-square-instagram"></i></a></li>
+                <li><a href=""><i class="fa-brands fa-square-twitter"></i></a></li>
+            </ul>
+        </span>
     </footer>
     <script src="js/index.js"></script>
-<script src="js/darkmode.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/darkmode.js"></script>
 </body>
 </html>
