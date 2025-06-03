@@ -111,7 +111,6 @@ const orderSchema = new mongoose.Schema({
   }
 });
 
-// Generate order number before saving
 orderSchema.pre('save', async function(next) {
   if (!this.orderNumber) {
     const count = await mongoose.model('Order').countDocuments();
@@ -121,18 +120,16 @@ orderSchema.pre('save', async function(next) {
   next();
 });
 
-// Calculate totals
 orderSchema.methods.calculateTotals = function() {
   this.subtotal = this.items.reduce((sum, item) => {
     item.subtotal = item.price * item.quantity;
     return sum + item.subtotal;
   }, 0);
   
-  // Calculate tax (10% for example)
   this.tax = this.subtotal * 0.1;
   
-  // Calculate shipping (free over $50, otherwise $5)
-  this.shipping = this.subtotal > 50 ? 0 : 5;
+  // shipping(free >$50)
+  this.shipping = this.subtotal > 50 ? 0 : 2.99;
   
   this.total = this.subtotal + this.tax + this.shipping;
 };

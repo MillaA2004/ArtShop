@@ -7,7 +7,6 @@ const adminAuth = require('../middleware/adminAuth');
 
 const router = express.Router();
 
-// Get all products with filters and sorting
 router.get('/products', [adminAuth], async (req, res) => {
     try {
         const { category, sort, order = 'asc', page = 1, limit = 20 } = req.query;
@@ -43,7 +42,7 @@ router.get('/products', [adminAuth], async (req, res) => {
     }
 });
 
-// Add new product
+// Add
 router.post('/products', [adminAuth, 
     body('name').trim().notEmpty(),
     body('price').isFloat({ min: 0 }),
@@ -75,7 +74,7 @@ router.post('/products', [adminAuth,
     }
 });
 
-// Update product
+// Update
 router.put('/products/:id', [adminAuth], async (req, res) => {
     try {
         const product = await Product.findByIdAndUpdate(
@@ -104,7 +103,7 @@ router.put('/products/:id', [adminAuth], async (req, res) => {
     }
 });
 
-// Delete product
+// Delete
 router.delete('/products/:id', [adminAuth], async (req, res) => {
     try {
         const product = await Product.findByIdAndDelete(req.params.id);
@@ -128,7 +127,7 @@ router.delete('/products/:id', [adminAuth], async (req, res) => {
     }
 });
 
-// Get all users
+// All users
 router.get('/users', [adminAuth], async (req, res) => {
     try {
         const users = await User.find({ role: { $ne: 'admin' } })
@@ -147,7 +146,7 @@ router.get('/users', [adminAuth], async (req, res) => {
     }
 });
 
-// Get all orders
+// All orders
 router.get('/orders', [adminAuth], async (req, res) => {
     try {
         const orders = await Order.find()

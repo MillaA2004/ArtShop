@@ -6,7 +6,6 @@ const { authenticate } = require('../middleware/auth');
 
 const router = express.Router();
 
-// Generate JWT token
 const generateToken = (userId) => {
   return jwt.sign(
     { userId },
@@ -22,7 +21,7 @@ router.post('/register', [
   body('fullName').trim().notEmpty()
 ], async (req, res) => {
   try {
-    // Check validation errors
+    // validation errors?
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
@@ -33,7 +32,7 @@ router.post('/register', [
 
     const { email, password, fullName } = req.body;
 
-    // Check if user already exists
+    //already exists?
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({
@@ -51,7 +50,6 @@ router.post('/register', [
 
     await user.save();
 
-    // Generate token
     const token = generateToken(user._id);
 
     res.status(201).json({
@@ -69,7 +67,7 @@ router.post('/register', [
   }
 });
 
-// Login user
+// Login
 router.post('/login', [
   body('email').isEmail().normalizeEmail(),
   body('password').notEmpty()
@@ -85,7 +83,6 @@ router.post('/login', [
 
     const { email, password } = req.body;
 
-    // Find user and include password for comparison
     const user = await User.findOne({ email }).select('+password');
     if (!user) {
       return res.status(401).json({
@@ -94,7 +91,6 @@ router.post('/login', [
       });
     }
 
-    // Check password
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
       return res.status(401).json({
@@ -103,7 +99,6 @@ router.post('/login', [
       });
     }
 
-    // Generate token
     const token = generateToken(user._id);
 
     res.json({
@@ -121,7 +116,7 @@ router.post('/login', [
   }
 });
 
-// Get current user profile
+// current user profile
 router.get('/profile', authenticate, async (req, res) => {
   try {
     const user = await User.findById(req.user._id)
@@ -140,8 +135,8 @@ router.get('/profile', authenticate, async (req, res) => {
   }
 });
 
-// Update user profile
-router.put('/profile', authenticate, [
+// update user profile
+/*router.put('/profile', authenticate, [
   body('fullName').optional().trim().notEmpty(),
   body('email').optional().isEmail().normalizeEmail()
 ], async (req, res) => {
@@ -163,7 +158,6 @@ router.put('/profile', authenticate, [
       }
     });
 
-    // Check if email is being changed and if it already exists
     if (updates.email && updates.email !== req.user.email) {
       const existingUser = await User.findOne({ email: updates.email });
       if (existingUser) {
@@ -191,10 +185,10 @@ router.put('/profile', authenticate, [
       message: 'Error updating profile'
     });
   }
-});
+});*/
 
 // Change password
-router.put('/change-password', authenticate, [
+/*router.put('/change-password', authenticate, [
   body('currentPassword').notEmpty(),
   body('newPassword').isLength({ min: 6 })
 ], async (req, res) => {
@@ -209,10 +203,8 @@ router.put('/change-password', authenticate, [
 
     const { currentPassword, newPassword } = req.body;
 
-    // Get user with password
     const user = await User.findById(req.user._id).select('+password');
 
-    // Verify current password
     const isMatch = await user.comparePassword(currentPassword);
     if (!isMatch) {
       return res.status(401).json({
@@ -235,6 +227,6 @@ router.put('/change-password', authenticate, [
       message: 'Error changing password'
     });
   }
-});
+});*/
 
 module.exports = router; 

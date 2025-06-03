@@ -46,7 +46,7 @@ const authenticate = async (req, res, next) => {
   }
 };
 
-// Check if user is admin
+// user is admin?
 const isAdmin = async (req, res, next) => {
   if (req.user.role !== 'admin') {
     return res.status(403).json({
@@ -57,7 +57,6 @@ const isAdmin = async (req, res, next) => {
   next();
 };
 
-// Optional authentication - doesn't fail if no token
 const optionalAuth = async (req, res, next) => {
   try {
     const token = req.header('Authorization')?.replace('Bearer ', '');
@@ -70,7 +69,6 @@ const optionalAuth = async (req, res, next) => {
     
     next();
   } catch (error) {
-    // Continue without authentication
     next();
   }
 };

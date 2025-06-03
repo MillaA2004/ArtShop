@@ -2,7 +2,6 @@ function getAuthToken() {
   return localStorage.getItem('authToken');
 }
 
-// Check if user is authenticated
 function isAuthenticated() {
   return !!getAuthToken();
 }
@@ -10,7 +9,6 @@ function isAuthenticated() {
 
 // Logout function
 function logout() {
-  // Clear authentication data
   localStorage.removeItem('authToken');
   localStorage.removeItem('user');
   localStorage.removeItem('isAdmin');

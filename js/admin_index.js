@@ -70,7 +70,7 @@ function initializePopup() {
 async function handleProductSubmit(event) {
     event.preventDefault(); 
 
-    const productForm = event.target; // submitted form
+    const productForm = event.target;
     const editingProductId = productForm.dataset.editingProductId;
 
     const nameInput = document.getElementById('name');
@@ -230,7 +230,7 @@ async function deleteProduct(productId) {
 
         if (data.success) {
             showToast('Product deleted successfully!');
-            fetchProducts(); // Refresh list
+            fetchProducts();
         } else {
             showToast(data.message || 'Failed to delete product', 'error');
         }

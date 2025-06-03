@@ -20,7 +20,6 @@ router.get('/', optionalAuth, async (req, res) => {
       limit = 12
     } = req.query;
 
-    // Build filter
     const filter = { isActive: true };
     
     if (category && category !== 'all') {
@@ -37,19 +36,16 @@ router.get('/', optionalAuth, async (req, res) => {
       if (maxPrice) filter.price.$lte = Number(maxPrice);
     }
     
-    // Search functionality
+    /*Search functionality
     if (search) {
       filter.$text = { $search: search };
-    }
+    }*/
 
-    // Build sort
     const sortOptions = {};
     sortOptions[sort] = order === 'desc' ? -1 : 1;
 
-    // Pagination
     const skip = (page - 1) * limit;
 
-    // Execute query
     const [products, total] = await Promise.all([
       Product.find(filter)
         .sort(sortOptions)
@@ -181,7 +177,6 @@ router.put('/:id', authenticate, isAdmin, async (req, res) => {
 // Delete product (Admin only)
 router.delete('/:id', authenticate, isAdmin, async (req, res) => {
   try {
-    // Soft delete - just mark as inactive
     const product = await Product.findByIdAndUpdate(
       req.params.id,
       { isActive: false },

@@ -5,13 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartCount = document.getElementById("cart-count");
   const clearBtn = document.getElementById("clear-cart");
 
-  // Защитна проверка
   if (!preview || !totalPriceDisplay || !clearBtn) {
     console.warn("Required elements not found");
     return;
   }
 
-  // Изчистваме стара визуализация (ако някой код е го изпълнил повторно)
   preview.innerHTML = "";
 
   let total = 0;
@@ -42,11 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
   totalPriceDisplay.textContent = `$${total.toFixed(2)}`;
   if (cartCount) cartCount.textContent = cart.length;
 
-  // Clear cart functionality
+  // Clear cart
   clearBtn.addEventListener("click", () => {
     if (confirm("Are you sure you want to clear the cart?")) {
       localStorage.removeItem("cart");
-      window.location.reload(); // Това е еднократно
+      window.location.reload(); 
     }
   });
 

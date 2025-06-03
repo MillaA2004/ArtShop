@@ -7,7 +7,7 @@ const { authenticate, isAdmin } = require('../middleware/auth');
 
 const router = express.Router();
 
-// Create new order (checkout)
+//new order
 router.post('/checkout', authenticate, [
   body('billingAddress.fullName').trim().notEmpty(),
   body('billingAddress.email').isEmail(),
@@ -32,7 +32,6 @@ router.post('/checkout', authenticate, [
     const { billingAddress, shippingAddress, sameAsShipping, payment } = req.body;
     console.log('[POST /api/orders/checkout] Payment details received:', payment);
 
-    // Get user with cart
     const user = await User.findById(req.user._id).populate('cart.product');
 
     if (!user || !user.cart || user.cart.length === 0) {
@@ -43,7 +42,6 @@ router.post('/checkout', authenticate, [
       });
     }
 
-    // Prepare order items and check stock
     const orderItems = [];
     let subtotal = 0;
 
@@ -96,7 +94,7 @@ router.post('/checkout', authenticate, [
       subtotal
     });
 
-    order.calculateTotals(); // This should exist on your Order model
+    order.calculateTotals();
     console.log('[POST /api/orders/checkout] Order totals calculated.');
 
     const cardLast4 = payment.cardLast4;
@@ -237,16 +235,12 @@ router.put('/:orderId/cancel', authenticate, async (req, res) => {
         message: 'Order not found'
       });
     }
-
-    // Check ownership
     if (order.user.toString() !== req.user._id.toString()) {
       return res.status(403).json({
         success: false,
         message: 'Unauthorized'
       });
     }
-
-    // Check if order can be cancelled
     if (['shipped', 'delivered', 'cancelled'].includes(order.status)) {
       return res.status(400).json({
         success: false,
@@ -254,12 +248,10 @@ router.put('/:orderId/cancel', authenticate, async (req, res) => {
       });
     }
 
-    // Cancel order
     order.status = 'cancelled';
     order.updatedAt = Date.now();
     await order.save();
 
-    // Restore product stock
     for (const item of order.items) {
       await Product.findByIdAndUpdate(
         item.product,
@@ -279,8 +271,6 @@ router.put('/:orderId/cancel', authenticate, async (req, res) => {
     });
   }
 });
-
-// Admin routes
 // Get all orders (Admin only)
 router.get('/admin/all', authenticate, isAdmin, async (req, res) => {
   try {

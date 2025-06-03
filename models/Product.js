@@ -51,13 +51,11 @@ const productSchema = new mongoose.Schema({
   }
 });
 
-// Update the updatedAt timestamp before saving
 productSchema.pre('save', function(next) {
   this.updatedAt = Date.now();
   next();
 });
 
-// Index for search functionality
 productSchema.index({ name: 'text', description: 'text', tags: 'text' });
 productSchema.index({ category: 1, price: 1 });
 

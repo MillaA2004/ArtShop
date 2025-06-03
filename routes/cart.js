@@ -6,7 +6,7 @@ const { authenticate } = require('../middleware/auth');
 
 const router = express.Router();
 
-// Get user's cart
+// user's cart
 router.get('/', authenticate, async (req, res) => {
   try {
     const user = await User.findById(req.user._id)
@@ -15,7 +15,6 @@ router.get('/', authenticate, async (req, res) => {
         select: 'name price image stock category'
       });
 
-    // Calculate cart totals
     let subtotal = 0;
     const cartItems = user.cart.map(item => {
       if (item.product && item.product.stock > 0) {
@@ -45,7 +44,7 @@ router.get('/', authenticate, async (req, res) => {
   }
 });
 
-// Add item to cart
+// Add item
 router.post('/add', authenticate, [
   body('productId').isMongoId(),
   body('quantity').isInt({ min: 1 })
@@ -64,7 +63,7 @@ router.post('/add', authenticate, [
     const { productId, quantity } = req.body;
     console.log(`[POST /api/cart/add] User ID: ${req.user._id}, Product ID: ${productId}, Quantity: ${quantity}`);
 
-    // Check if product exists and has stock
+    //product exists and has stock?
     const product = await Product.findById(productId);
     if (!product || !product.isActive) {
       console.log('[POST /api/cart/add] Product not found or inactive. Product:', product);
@@ -91,7 +90,6 @@ router.post('/add', authenticate, [
     }
     console.log('[POST /api/cart/add] User found. Cart BEFORE modification:', JSON.stringify(user.cart));
     
-    // Check if product already in cart
     const existingItemIndex = user.cart.findIndex(
       item => item.product && item.product.toString() === productId
     );
@@ -120,9 +118,6 @@ router.post('/add', authenticate, [
       });
     }
 
-    // Populate and return updated cart
-    // Note: It's good practice to re-fetch or be careful with populated data after save if versions matter.
-    // For this case, direct population should be fine.
     await user.populate({
       path: 'cart.product',
       select: 'name price image stock'
@@ -143,7 +138,7 @@ router.post('/add', authenticate, [
   }
 });
 
-// Update cart item quantity
+// Update item quantity
 router.put('/update', authenticate, [
   body('productId').isMongoId(),
   body('quantity').isInt({ min: 0 })
@@ -198,9 +193,6 @@ router.put('/update', authenticate, [
       
       if (itemIndex === -1) {
         console.log(`[PUT /api/cart/update] Item not found in cart to update: ${productId}`);
-        // This case should ideally not happen if the product was in cart to begin with.
-        // If it must be added, this would be an add operation, not update.
-        // For now, returning error as it implies an inconsistent state or request.
         return res.status(404).json({
           success: false,
           message: 'Item not found in cart to update. If adding new, use add to cart.'
@@ -239,7 +231,7 @@ router.put('/update', authenticate, [
   }
 });
 
-// Remove item from cart
+// Remove item
 router.delete('/remove/:productId', authenticate, async (req, res) => {
   try {
     const { productId } = req.params;
@@ -282,7 +274,7 @@ router.delete('/clear', authenticate, async (req, res) => {
   }
 });
 
-// Sync cart (for logged-in users to merge guest cart)
+// Sync cart
 router.post('/sync', authenticate, [
   body('cart').isArray(),
   body('cart.*.productId').isMongoId(),
@@ -300,14 +292,12 @@ router.post('/sync', authenticate, [
     const { cart: guestCart } = req.body;
     const user = await User.findById(req.user._id);
 
-    // Merge guest cart with user cart
     for (const item of guestCart) {
       const existingIndex = user.cart.findIndex(
         cartItem => cartItem.product.toString() === item.productId
       );
 
       if (existingIndex > -1) {
-        // Update quantity if already exists
         user.cart[existingIndex].quantity += item.quantity;
       } else {
         // Add new item

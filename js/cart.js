@@ -273,29 +273,24 @@ function showToast(message, type = 'success') {
 document.addEventListener('DOMContentLoaded', () => {
   loadCart();
   
-  // Attach event listeners
   document.getElementById('clear-cart')?.addEventListener('click', clearCart);
   
-  // Add form submission handler
   const checkoutForm = document.getElementById('checkoutForm'); // Use the new ID
   if (checkoutForm) {
     checkoutForm.addEventListener('submit', processCheckout);
   }
   
-  // Input masks and validation for credit card
   const ccInput = document.getElementById('ccnum');
   if (ccInput) {
     ccInput.addEventListener('input', (e) => {
       let value = e.target.value;
-      // Remove non-digits
       let numericValue = value.replace(/\D/g, '');
       
-      // Limit to 16 digits
+      // <16 digits
       if (numericValue.length > 16) {
         numericValue = numericValue.substring(0, 16);
       }
       
-      // Optional: Add spaces for visual formatting (e.g., xxxx xxxx xxxx xxxx)
       let formattedValue = '';
       for (let i = 0; i < numericValue.length; i++) {
         if (i > 0 && i % 4 === 0) {
@@ -307,10 +302,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  // Check authentication
   if (isAuthenticated()) {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    // Pre-fill form with user data if available
     if (user.email) {
       document.getElementById('email').value = user.email;
     }

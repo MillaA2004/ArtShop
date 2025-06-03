@@ -26,7 +26,6 @@ function toggleForm() {
   }
 }
 
-// Handle form submission
 document.getElementById('auth-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   
@@ -48,7 +47,7 @@ document.getElementById('auth-form').addEventListener('submit', async (e) => {
       : { 
           email, 
           password, 
-          fullName: email.split('@')[0] // Use email prefix as default name
+          fullName: email.split('@')[0] 
         };
     
     const response = await fetch(`${API_URL}${endpoint}`, {
@@ -64,7 +63,6 @@ document.getElementById('auth-form').addEventListener('submit', async (e) => {
     console.log('Login API Response:', data);
 
     if (data.success) {
-      // Store token and user data
       localStorage.setItem('authToken', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
       
@@ -76,7 +74,7 @@ document.getElementById('auth-form').addEventListener('submit', async (e) => {
         localStorage.setItem('isAdmin', 'true');
         console.log('isAdmin flag SET to true');
       } else {
-        localStorage.removeItem('isAdmin'); // Ensure it's cleared for non-admins
+        localStorage.removeItem('isAdmin'); 
         console.log('isAdmin flag REMOVED or not set');
       }
       
@@ -130,7 +128,6 @@ async function syncCart() {
   }
 }
 
-// Show messages
 function showMessage(message, type) {
   const messageDiv = document.createElement('div');
   messageDiv.className = `message ${type}`;
@@ -156,7 +153,7 @@ function showMessage(message, type) {
   }, 3000);
 }
 
-// Check if user is already logged in
+// user is already logged in?
 function checkAuth() {
   const token = localStorage.getItem('authToken');
   if (token) {
