@@ -1,3 +1,9 @@
+main {
+    margin: 12vh 15vw;
+    height: fit-content;
+    padding: 20px;
+}
+
 .order-item {
     display: flex;
     flex-direction: row;
