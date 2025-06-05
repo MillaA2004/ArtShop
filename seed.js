@@ -3,7 +3,7 @@ const Product = require('./models/Product');
 const User = require('./models/User');
 require('dotenv').config();
 
-// Sample products data - All simplified
+// Sample products data
 const sampleProducts = [
   {
     name: 'Pose',
